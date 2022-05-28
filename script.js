@@ -10,14 +10,13 @@ const DigitsFromString = function (array) {
 
   if (!subArr) {
     digits = array.match(regex);
-    sum = digits?.map((n) => Number(n)).reduce((acc, mov) => acc + mov, 0) || 0;
+    sum = digits?.map((n) => Number(n)).reduce((acc, n) => acc + n, 0) || 0;
     return sum;
   }
   if (subArr) {
     for (const arr of array) {
       digits = arr.match(regex);
-      sum =
-        digits?.map((n) => Number(n)).reduce((acc, mov) => acc + mov, 0) || 0;
+      sum = digits?.map((n) => Number(n)).reduce((acc, n) => acc + n, 0) || 0;
     }
     return sum;
   }
