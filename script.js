@@ -1,19 +1,19 @@
 const array = ["AAA12", "A 2 A ", "-2-2"];
 const array2 = ["", "", "AAAAS", "-2", ""];
 const array3 = [["2AA2"], ["A---A-A"], ["-2-2as++?da5"], []];
-const array4 = [["-2"], ["2 a s 2"], ["2"], "2++DDD2"];
+const array4 = ["-3-3", ["2 a s 2"], ["2"], "2++DDD"];
 
 const DigitsFromString = function (array) {
   const regex = /-?\d+/g;
   let digits;
   let sum = 0;
 
-  if (!moreArr) {
+  if (!subArr) {
     digits = array.match(regex);
     sum = digits?.map((n) => Number(n)).reduce((acc, mov) => acc + mov, 0) || 0;
     return sum;
   }
-  if (moreArr) {
+  if (subArr) {
     for (const arr of array) {
       digits = arr.match(regex);
       sum =
@@ -24,18 +24,15 @@ const DigitsFromString = function (array) {
 };
 
 let finalSum = 0;
-let moreArr;
+let subArr;
 
 const PrintSum = function (array) {
   for (const arr of array) {
-    moreArr = Array.isArray(arr);
+    subArr = Array.isArray(arr);
+    console.log(subArr);
     finalSum += DigitsFromString(arr);
   }
   console.log(`Sum of all digits in array is equal to: ${finalSum} 💥`);
   finalSum = 0;
 };
-
-PrintSum(array);
-PrintSum(array2);
-PrintSum(array3);
 PrintSum(array4);
