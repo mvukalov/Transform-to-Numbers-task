@@ -6,15 +6,15 @@ const array4 = [["-2"], ["2 a s 2"], ["2"], "2++DDD2"];
 const getNumber = function (array, subArr) {
   let number = 0;
   const regex = /-?\d+/g;
+
   const ElementToNumber = (array) =>
-    (number =
-      array
-        .match(regex)
-        ?.map((n) => Number(n))
-        .reduce((acc, n) => acc + n, 0) || 0);
+    array
+      .match(regex)
+      ?.map((n) => Number(n))
+      .reduce((acc, n) => acc + n, 0) || 0;
+
   if (!subArr) {
     number = ElementToNumber(array);
-
     return number;
   }
   if (subArr) {
@@ -24,19 +24,19 @@ const getNumber = function (array, subArr) {
     return number;
   }
 };
-
-const Sum = function (array) {
+const calcSum = function (array) {
   let subArr;
   let finalSum = 0;
+
   for (const arr of array) {
     subArr = Array.isArray(arr);
     finalSum += getNumber(arr, subArr);
   }
-  console.log(`Sum of all digits in array is equal to: ${finalSum} 💥`);
+  console.log(`Sum of all numbers in array is equal to: ${finalSum} 💥`);
   finalSum = 0;
 };
 
-Sum(array);
-Sum(array2);
-Sum(array3);
-Sum(array4);
+calcSum(array);
+calcSum(array2);
+calcSum(array3);
+calcSum(array4);
