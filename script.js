@@ -3,38 +3,40 @@ const array2 = ["", "", "AAAAS", "-2", ""];
 const array3 = [["2AA2"], ["A---A-A"], ["-2-2as++?da5"], []];
 const array4 = [["-2"], ["2 a s 2"], ["2"], "2++DDD2"];
 
-const DigitsFromString = function (array) {
+const getNumber = function (array, subArr) {
+  let number = 0;
   const regex = /-?\d+/g;
-  let digits;
-  let sum = 0;
-
+  const ElementToNumber = (array) =>
+    (number =
+      array
+        .match(regex)
+        ?.map((n) => Number(n))
+        .reduce((acc, n) => acc + n, 0) || 0);
   if (!subArr) {
-    digits = array.match(regex);
-    sum = digits?.map((n) => Number(n)).reduce((acc, n) => acc + n, 0) || 0;
-    return sum;
+    number = ElementToNumber(array);
+
+    return number;
   }
   if (subArr) {
     for (const arr of array) {
-      digits = arr.match(regex);
-      sum = digits?.map((n) => Number(n)).reduce((acc, n) => acc + n, 0) || 0;
+      number = ElementToNumber(arr);
     }
-    return sum;
+    return number;
   }
 };
 
-let finalSum = 0;
-let subArr;
-
-const PrintSum = function (array) {
+const Sum = function (array) {
+  let subArr;
+  let finalSum = 0;
   for (const arr of array) {
     subArr = Array.isArray(arr);
-    finalSum += DigitsFromString(arr);
+    finalSum += getNumber(arr, subArr);
   }
   console.log(`Sum of all digits in array is equal to: ${finalSum} 💥`);
   finalSum = 0;
 };
 
-PrintSum(array);
-PrintSum(array2);
-PrintSum(array3);
-PrintSum(array4);
+Sum(array);
+Sum(array2);
+Sum(array3);
+Sum(array4);
